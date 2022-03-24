@@ -4,24 +4,28 @@ import jdk.jfr.Description;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TyrannyRocketEquationTest {
-    TyrannyRocketEquation TyREObj;
+   private TyrannyRocketEquation TyREObj;
+   private ByteArrayOutputStream bos;
 
     @BeforeEach
     public void init() {
-        TyREObj = new TyrannyRocketEquation();
-    }
+        TyREObj = new TyrannyRocketEquation("Task1");
+        bos = new ByteArrayOutputStream();
 
+    }
 
     // Übergebe der Methode eine negative Zahl
     @Test
     @Description("Call Method with negative Numbers")
     void fuelCalculatorTest_MinusParameters(){
-    Integer actual = TyREObj.fuelCalculator(-2);
+    TyREObj.fuelCalculator(-2);
     String expected = "ERROR: Mass is under 0";
-    //assertEquals(expected,actual);
+    assertEquals(expected,bos.toString());
 
     }
 
@@ -55,7 +59,7 @@ public class TyrannyRocketEquationTest {
     @Test
     @Description("Call Method with Parameter > Range of int")
     void fuelCalculatorTest_intOverflowParameter(){
-
+    //Integer TyREObj.fuelCalculator("156156165156545646");
 
     }
     // Übergebe mit verschiedenen Werten und Rückgabetypen
